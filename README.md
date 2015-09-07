@@ -1,2 +1,2 @@
 # Sure Bay
-Mobile App that makes survey easier and paperless!!!
+Mobile App that makes the creation of survey questionnaire easy and paperless!!!
