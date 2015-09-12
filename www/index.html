@@ -19,14 +19,23 @@
 <body ng-app="starter">
 
 
-  <ion-tabs class="tabs-positive">
-      <ion-tab icon="ion-home" ui-sref="users">
+  <ion-tabs class="tabs-striped tabs-balanced">
+      <ion-tab icon="ion-person-stalker" ui-sref="users">
         <ion-nav-view name="users"></ion-nav-view>
       </ion-tab>
-      <ion-tab icon="ion-help" ui-sref="register">
-        <ion-nav-view name="register"></ion-nav-view>
+      <ion-tab icon="ion-ios-book" ui-sref="surveys">
+        <ion-nav-view name="surveys"></ion-nav-view>
       </ion-tab>
     </ion-tabs>
+    
+    <div ui-sref="register">
+      <ion-nav-view name="register"></ion-nav-view>
+    </div>
+
+
+    <!-- <ion-nav-buttons icon="ion-ios-book" ui-sref="register">
+  <ion-nav-view name="register"></ion-nav-view>
+ </ion-nav-buttons> -->
 
 
   <!-- ionic/angularjs js -->

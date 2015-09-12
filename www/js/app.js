@@ -37,4 +37,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
       }
     })
+    .state('surveys', {
+      url: '/surveys',
+      views:{
+        surveys:{
+          templateUrl: 'js/views/surveys.html'
+        }
+      }
+    })
 });
