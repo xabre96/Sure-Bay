@@ -19,7 +19,15 @@
 <body ng-app="starter">
 
 
-<ion-nav-view ng-controller="adminUser"></ion-nav-view>
+  <ion-tabs class="tabs-positive">
+      <ion-tab icon="ion-home" ui-sref="users">
+        <ion-nav-view name="users"></ion-nav-view>
+      </ion-tab>
+      <ion-tab icon="ion-help" ui-sref="register">
+        <ion-nav-view name="register"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
+
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>

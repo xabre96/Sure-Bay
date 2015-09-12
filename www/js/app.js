@@ -23,10 +23,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('users', {
       url: '/users',
-      templateUrl: 'js/views/users.html'
+      views:{
+        users:{
+            templateUrl: 'js/views/users.html'
+        }
+      }
     })
     .state('register', {
       url: '/register',
-      templateUrl: 'js/views/register.html'
+      views:{
+        register:{
+          templateUrl: 'js/views/register.html'
+        }
+      }
     })
 });
