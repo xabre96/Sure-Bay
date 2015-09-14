@@ -1,0 +1,20 @@
+
+<ion-view view-title="Users">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+
+    <ion-nav-buttons side="left">
+      <!-- <a href="#/app/register" class="button button-icon button-clear ion-plus" menu-toggle="left">
+      </a> -->
+      <a class="button button-positive icon-left ion-plus" href="#/createUser">
+      </a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="padding">
+    <ul ng-repeat="u in users">
+        {{u.name}}
+
+    </ul>
+  </ion-content>
+</ion-view>
