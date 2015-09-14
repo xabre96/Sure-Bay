@@ -12,14 +12,22 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content class="padding">
-    <div class="list" ng-repeat="u in users">
+    <div class="list" >
         <!-- <li class="items">{{u.name}}</li> -->
-        <a href="#" class="item item-avatar">
+        <a href="#" ng-repeat="u in users" class="item item-avatar item-button-right">
           <!-- <img src="" alt="" /> -->
           <h2>{{u.name}}</h2>
           <p>
             Hello!
           </p>
+          <div class="button-bar">
+            <button class="button button-calm b1">
+               <i class="icon ion-edit"></i>
+            </button>
+            <button class="button button-calm b1">
+               <i class="icon ion-trash-a"></i>
+            </button>
+          </div>
         </a>
     </div>
   </ion-content>
