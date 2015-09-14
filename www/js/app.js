@@ -32,43 +32,54 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-    .state('app.users', {
-      url: '/users',
-      views: {
-        'users': {
-          templateUrl: 'templates/users.html'
-        }
+  .state('app.users', {
+    url: '/users',
+    views: {
+      'users': {
+        templateUrl: 'templates/users.html'
       }
-    })
+    }
+  })
 
-    .state('app.surveys', {
-      url: '/surveys',
-      views: {
-        'surveys': {
-          templateUrl: 'templates/surveys.html'
-        }
+  .state('app.surveys', {
+    url: '/surveys',
+    views: {
+      'surveys': {
+        templateUrl: 'templates/surveys.html'
       }
-    })
+    }
+  })
 
-    .state('app.account', {
-      url: '/account',
-      views: {
-        'account': {
-          templateUrl: 'templates/account.html'
-        }
+  .state('app.account', {
+    url: '/account',
+    views: {
+      'account': {
+        templateUrl: 'templates/account.html'
       }
-    })
+    }
+  })
 
-    .state('createUser', {
-      url: '/createUser',
-      // views: {
-      //   'createUser': {
-          templateUrl: 'templates/register.html'
+  .state('createUser', {
+    url: '/createUser',
+    // views: {
+    //   'createUser': {
+    templateUrl: 'templates/register.html'
       //   }
       // }
-    })
+  })
 
-
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/nova/login.html'
+  })
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/nova/register.html'
+  })
+  .state('user', {
+    url: '/user',
+    templateUrl: 'templates/nova/user.html'
+  })
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/users');
+  $urlRouterProvider.otherwise('/login');
 });
