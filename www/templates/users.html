@@ -12,9 +12,15 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content class="padding">
-    <ul ng-repeat="u in users">
-        {{u.name}}
-
-    </ul>
+    <div class="list" ng-repeat="u in users">
+        <!-- <li class="items">{{u.name}}</li> -->
+        <a href="#" class="item item-avatar">
+          <!-- <img src="" alt="" /> -->
+          <h2>{{u.name}}</h2>
+          <p>
+            Hello!
+          </p>
+        </a>
+    </div>
   </ion-content>
 </ion-view>
