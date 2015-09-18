@@ -41,6 +41,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('viewUser', {
+    url: '/viewUser',
+    templateUrl: 'templates/admin/viewUser.html',
+    controller: 'AppCtrl'
+  })
+
   .state('app.surveys', {
     url: '/surveys',
     views: {

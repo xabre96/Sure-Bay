@@ -1,24 +1,44 @@
 angular.module('starter.services', ['ngResource'])
   .service('usersService', function($resource) {
 
-    var factory = {};
+    //var factory = {};
     var users = [{
       firstname: 'Croiche Jom',
       lastname: 'Cabotaje',
+      username: 'cjim',
+      password: '123',
+      email: 'cjim@gmail.com',
+      address: 'El Salvador City',
+      birthday:'December 10, 1995',
       usertype: 'Admin'
     },{
       firstname: 'Sheen',
       lastname: 'Gulay',
+      username: 'sharp nectie',
+      password: '123',
+      email: 'sharp@gmail.com',
+      address: 'CDO City',
+      birthday:'November 4, 1995',
       usertype: 'Admin'
     },{
       firstname: 'Xan',
       lastname: 'Gutierrez',
+      username: 'xan',
+      password: '123',
+      email: 'xan@gmail.com',
+      address: 'Camiguin',
+      birthday:'September 8, 1996',
       usertype: 'Admin'
     },
      {
       firstname: 'Nova',
       lastname: 'Kho',
-      usertype: 'User'
+      username: 'cjim',
+      password: '123',
+      email: 'nova@gmail.com',
+      address: 'CDO City',
+      birthday:'October 10, 1995',
+      usertype: 'Admin'
     }];
 
     //  return {

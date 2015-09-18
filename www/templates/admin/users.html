@@ -7,7 +7,7 @@
   </ion-nav-bar>
   <ion-content class="padding">
     <div class="list card" ng-repeat="u in users track by $index">
-      <a href="#" class="item item-avatar item-button-right">
+      <a href="#/viewUser" class="item item-avatar item-button-right">
         <img src="../img/default.jpg" alt="Profile Picture" />
         <h2>{{u.firstname}} {{u.lastname}}</h2>
         <p>
@@ -18,7 +18,7 @@
         </button> -->
       </a>
 
-      <div class="item tabs tabs-secondary tabs-icon-right">
+      <!-- <div class="item tabs tabs-secondary tabs-icon-right">
          <div class="button-bar">
         <button class="button button-light b1" ng-click="updateUser($index)">
           <i class="icon ion-edit"></i>
@@ -27,7 +27,7 @@
           <i class="icon ion-trash-a"></i>
         </button>
         </div>
-      </div>
+      </div> -->
     </div>
 
   </ion-content>
