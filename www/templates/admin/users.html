@@ -1,0 +1,34 @@
+<ion-view view-title="Users">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-buttons side="left">
+      <a class="button button-positive icon-left ion-plus" href="#/register2">
+      </a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="padding">
+    <div class="list card" ng-repeat="u in users track by $index">
+      <a href="#" class="item item-avatar item-button-right">
+        <img src="../img/default.jpg" alt="Profile Picture" />
+        <h2>{{u.firstname}} {{u.lastname}}</h2>
+        <p>
+          {{u.usertype}}
+        </p>
+        <!-- <button class="button button-positive">
+          <i class="icon ion-trash-a"></i>
+        </button> -->
+      </a>
+
+      <div class="item tabs tabs-secondary tabs-icon-right">
+         <div class="button-bar">
+        <button class="button button-light b1" ng-click="updateUser($index)">
+          <i class="icon ion-edit"></i>
+        </button>
+        <button class="button button-light b1" ng-click="deleteUser($index)">
+          <i class="icon ion-trash-a"></i>
+        </button>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

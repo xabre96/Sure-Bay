@@ -1,0 +1,58 @@
+<ion-view title="Create New Account">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-back-button class="button-clear">
+      <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content padding="true" scroll="true" class="has-header">
+    <form>
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">First Name</span>
+          <input type="text" placeholder="" ng-model="user.firstName">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Last Name</span>
+          <input type="text" placeholder="" ng-model="user.lastName">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" placeholder="" ng-model="user.userName">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="" ng-model="user.passWord">
+        </label>
+      </ion-list>
+      <label class="item item-input">
+        <span class="input-label">Email</span>
+        <input type="email" placeholder="" ng-model="user.email">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Adress</span>
+        <input type="text" placeholder="" ng-model="user.address">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Birthday</span>
+        <input type="text" placeholder="" ng-model="user.birthday">
+      </label>
+      <span class="input-label">User Type:</span>
+      <label class="item item-radio">
+        <input type="radio" name="userType" value="Admin" ng-model="user.userType">
+        <div class="item-content">
+          Admin
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+      <label class="item item-radio">
+        <input type="radio" name="userType" value="User" ng-model="user.userType">
+        <div class="item-content">
+          User
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+    <button class="button button-calm button-block button-medium" ng-click="userAdd(user)">Sign Up</button>
+    <a href="#/app/users" class="button button-royal button-block button-medium">Cancel</a>
+    </form>
+  </ion-content>
+</ion-view>

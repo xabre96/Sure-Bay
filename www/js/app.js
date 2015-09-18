@@ -28,7 +28,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'templates/admin/menu.html',
     controller: 'AppCtrl'
   })
 
@@ -36,7 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/users',
     views: {
       'users': {
-        templateUrl: 'templates/users.html'
+        templateUrl: 'templates/admin/users.html'
       }
     }
   })
@@ -45,7 +45,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/surveys',
     views: {
       'surveys': {
-        templateUrl: 'templates/surveys.html'
+        templateUrl: 'templates/admin/surveys.html'
+      }
+    }
+  })
+
+  .state('app.home', {
+    url: '/home',
+    views: {
+      'home': {
+        templateUrl: 'templates/admin/home.html'
       }
     }
   })
@@ -54,31 +63,29 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/account',
     views: {
       'account': {
-        templateUrl: 'templates/account.html'
+        templateUrl: 'templates/admin/account.html'
       }
     }
   })
 
-  .state('createUser', {
-    url: '/createUser',
-    // views: {
-    //   'createUser': {
-    templateUrl: 'templates/register.html'
-      //   }
-      // }
-  })
-
   .state('login', {
     url: '/login',
-    templateUrl: 'templates/nova/login.html'
+    templateUrl: 'templates/login.html'
   })
+
   .state('register', {
     url: '/register',
-    templateUrl: 'templates/nova/register.html'
+    templateUrl: 'templates/register.html'
+  })
+
+  .state('register2', {
+    url: '/register2',
+    templateUrl: 'templates/admin/register.html',
+    controller: 'AppCtrl'
   })
   .state('user', {
     url: '/user',
-    templateUrl: 'templates/nova/user.html'
+    templateUrl: 'templates/user/user.html'
   })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
