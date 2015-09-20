@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, usersService) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, usersService, $state) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,9 +10,49 @@ angular.module('starter.controllers', ['starter.services'])
   //});
 
   //users
+
   $scope.users = usersService.getUsers();
 
-  
+  $scope.updateProfile = function(){
+    $state.go("updateUser");
+  };
+
+  $scope.updateProfile2 = function(){
+    
+  };
+
+  $scope.logout= function(){
+    $state.go("login");
+  };
+
+  $scope.logIn = function(user) {
+      var num = $scope.users.length;
+      for (var x = 0; x < num; x++) {
+        tempUser = $scope.users[x].username;
+        tempPass = $scope.users[x].password;
+        if (tempUser === user.userName && tempPass === user.passWord) {
+          if($scope.users[x].usertype=='Admin'){
+              $state.go("app.home");
+              user.userName = "";
+              user.passWord = "";
+          }
+          else{
+            $state.go("user");
+            user.userName = "";
+            user.passWord = "";
+          }
+          break;
+        }
+      }
+      if (tempUser !== user.userName && tempPass !== user.passWord) {
+        $scope.message = "Username and Password are incorrect.";
+      }
+
+      if(user.userName == "" && user.passWord == ""){
+        $scope.message="";
+      }
+      num = "";
+  };
 
   $scope.userAdd = function(user){
     usersService.insertUser(

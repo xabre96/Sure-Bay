@@ -69,14 +69,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/account',
     views: {
       'account': {
-        templateUrl: 'templates/admin/account.html'
+        templateUrl: 'templates/admin/account.html',
+        controller: 'AppCtrl'
       }
     }
   })
 
   .state('login', {
     url: '/login',
-    templateUrl: 'templates/login.html'
+    templateUrl: 'templates/login.html',
+    controller: 'AppCtrl'
   })
 
   .state('register', {
@@ -92,6 +94,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('user', {
     url: '/user',
     templateUrl: 'templates/user/user.html'
+  })
+  .state('updateUser', {
+    url: '/updateUser',
+    templateUrl: 'templates/admin/updateUser.html'
   })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

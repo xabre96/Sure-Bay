@@ -3,6 +3,7 @@ angular.module('starter.services', ['ngResource'])
 
     //var factory = {};
     var users = [{
+      id: '1',
       firstname: 'Croiche Jom',
       lastname: 'Cabotaje',
       username: 'cjim',
@@ -12,15 +13,17 @@ angular.module('starter.services', ['ngResource'])
       birthday:'December 10, 1995',
       usertype: 'Admin'
     },{
+      id: '2',
       firstname: 'Sheen',
       lastname: 'Gulay',
-      username: 'sharp nectie',
+      username: 'psheen',
       password: '123',
       email: 'sharp@gmail.com',
       address: 'CDO City',
       birthday:'November 4, 1995',
       usertype: 'Admin'
     },{
+      id: '3',
       firstname: 'Xan',
       lastname: 'Gutierrez',
       username: 'xan',
@@ -28,12 +31,13 @@ angular.module('starter.services', ['ngResource'])
       email: 'xan@gmail.com',
       address: 'Camiguin',
       birthday:'September 8, 1996',
-      usertype: 'Admin'
+      usertype: 'User'
     },
      {
+       id: '4',
       firstname: 'Nova',
       lastname: 'Kho',
-      username: 'cjim',
+      username: 'nova',
       password: '123',
       email: 'nova@gmail.com',
       address: 'CDO City',

@@ -7,11 +7,18 @@
   <ion-nav-bar class="bar-balanced"></ion-nav-bar>
   <ion-content>
     <div class="list">
-          <a href="#" class="item item-icon-left">
+          <!-- <a href="#" class="item item-icon-left">
             <i class="icon ion-compose"></i>
             Update My Profile
-          </a>
-          <a href="#/login" class="item item-icon-left">Log Out</a>
+          </a> -->
+          <button type="button" class="item item-icon-left button-full" ng-click="updateProfile()">
+            <i class="icon ion-compose"></i>
+            Update My Profile
+          </button>
+            <button type="button" class="item item-icon-left button-full" ng-click="logout()">
+              <i class="icon ion-power"></i>
+              Get me out from here!
+            </button>
     </div>
   </ion-content>
 </ion-view>

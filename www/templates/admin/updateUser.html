@@ -1,12 +1,13 @@
-<ion-view title="Create User">
+
+<ion-view view-title="Update User">
   <ion-nav-bar class="bar-balanced">
     <ion-nav-buttons side="left">
-      <a class="button button-clear ion-arrow-left-c" href="#/app/users">
+      <a class="button button-clear ion-arrow-left-c" href="#/app/account">
           Back
         </a>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content padding="true" scroll="true" class="has-header">
+  <ion-content>
     <form>
       <ion-list>
         <label class="item item-input">
@@ -38,23 +39,7 @@
         <span class="input-label">Birthday</span>
         <input type="text" placeholder="" ng-model="user.birthday">
       </label>
-      <br>
-      <span class="input-label"><b>User Type:</b></span>
-      <label class="item item-radio">
-        <input type="radio" name="userType" value="Admin" ng-model="user.userType">
-        <div class="item-content">
-          Admin
-        </div>
-        <i class="radio-icon ion-checkmark"></i>
-      </label>
-      <label class="item item-radio">
-        <input type="radio" name="userType" value="User" ng-model="user.userType">
-        <div class="item-content">
-          User
-        </div>
-        <i class="radio-icon ion-checkmark"></i>
-      </label>
-    <button class="button button-calm button-block button-medium" ng-click="userAdd(user)">Sign Up</button>
+    <button class="button button-calm button-block button-medium" ng-click="updateProfile2(user)">Save</button>
     </form>
   </ion-content>
 </ion-view>
