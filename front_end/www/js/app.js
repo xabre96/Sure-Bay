@@ -29,16 +29,23 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/app',
     abstract: true,
     templateUrl: 'templates/admin/menu.html',
-    controller: 'AppCtrl'
+    // controller: 'AppCtrl'
   })
 
   .state('app.users', {
     url: '/users',
     views: {
       'users': {
-        templateUrl: 'templates/admin/users.html'
+        templateUrl: 'templates/admin/users.html',
+        controller: 'AppCtrl'
       }
     }
+  })
+
+  .state('changePass', {
+    url: '/changePass/:user_id',
+    templateUrl: 'templates/admin/changePass.html',
+    controller: 'userController'
   })
 
   .state('viewUser', {
@@ -60,7 +67,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/home',
     views: {
       'home': {
-        templateUrl: 'templates/admin/home.html'
+        templateUrl: 'templates/admin/home.html',
+        controller: 'AppCtrl'
       }
     }
   })
@@ -97,7 +105,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
   .state('updateUser', {
     url: '/updateUser/:user_id',
-    templateUrl: 'templates/admin/updateUser.html'
+    templateUrl: 'templates/admin/updateUser.html',
+    controller: 'userController as xx'
   })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');

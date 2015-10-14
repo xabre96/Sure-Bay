@@ -32,7 +32,7 @@
       </label>
       <label class="item item-input">
         <span class="input-label">Birthday</span>
-        <input type="date" placeholder="" ng-model="user.birthday" min="1940-01-01">
+        <input type="date" placeholder="" ng-model="user.birthday">
       </label>
       <br>
       <span class="input-label"><b>User Type:</b></span>
@@ -52,5 +52,8 @@
       </label>
     <button class="button button-calm button-block button-medium" ng-click="userAdd(user)">Create User</button>
     </form>
+    <p style="color: red;">
+      {{message}}
+    </p>
   </ion-content>
 </ion-view>

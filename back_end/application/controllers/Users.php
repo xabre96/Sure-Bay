@@ -64,22 +64,32 @@ class Users extends REST_Controller {
 	public function index_put(){
 		$id = (int) $this->get('id');
 		$data = $this->put();
-		$confirm = $this->users->update_user($data, $id);
-		if($confirm === false){
-				$this->response(array("message" => "Failed"), 400);
+		if(!$data){
+			$this->response(array("message" => "Failed"), 400);
 		}else{
-				$this->response(array("message" => "User Updated Successfully"), 200);
+			$confirm = $this->users->update_user($data, $id);
+			if($confirm === false){
+					$this->response(array("message" => "Failed"), 400);
+			}else{
+					$this->response(array("message" => "User Updated Successfully"), 200);
+			}
 		}
 	}
 
-	// public function index_put(){
-	// 	$id = (int) $this->get('id');
+	// public function user_put($id){
+	// 	// $id = (int) $this->get('id');
+	// 	$id = (int) $id;
+	// 	echo $id;
 	// 	$data = $this->put();
-	// 	$confirm = $this->users->activate_user($data, $id);
-	// 	if($confirm === false){
-	// 			$this->response(array("message" => "Failed"), 400);
+	// 	if(!$data){
+	// 		$this->response(array("message" => "Failed"), 400);
 	// 	}else{
-	// 			$this->response(array("message" => "User Activated Successfully"), 200);
+	// 		$confirm = $this->users->activate_user($data, $id);
+	// 		if($confirm === false){
+	// 				$this->response(array("message" => "Failed"), 400);
+	// 		}else{
+	// 				$this->response(array("message" => "User Activated Successfully"), 200);
+	// 		}
 	// 	}
 	// }
 

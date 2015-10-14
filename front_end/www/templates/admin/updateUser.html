@@ -1,5 +1,4 @@
-
-<ion-view view-title="Update User">
+<ion-view view-title="Update Profile">
   <ion-nav-bar class="bar-balanced">
     <ion-nav-buttons side="left">
       <a class="button button-clear ion-arrow-left-c" href="#/app/account">
@@ -8,38 +7,32 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
-    <form>
-      <ion-list>
-        <label class="item item-input">
-          <span class="input-label">First Name</span>
-          <input type="text" placeholder="" ng-model="user.firstName">
+    <section class="list" ng-repeat="u in user">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">First Name: </span>
+          <input type="text"  ng-init="tao.firstName=u.firstname" ng-model="tao.firstName">
         </label>
-        <label class="item item-input">
-          <span class="input-label">Last Name</span>
-          <input type="text" placeholder="" ng-model="user.lastName">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Last Name: </span>
+          <input type="text" ng-init="tao.lastName = u.lastname" ng-model="tao.lastName">
         </label>
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" placeholder="" ng-model="user.userName">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email: </span>
+          <input type="email" ng-init="tao.email=u.email" ng-model="tao.email">
         </label>
-        <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" placeholder="" ng-model="user.passWord">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Address: </span>
+          <input type="text" ng-init="tao.address=u.address" ng-model="tao.address">
         </label>
-      </ion-list>
-      <label class="item item-input">
-        <span class="input-label">Email</span>
-        <input type="email" placeholder="" ng-model="user.email">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Adress</span>
-        <input type="text" placeholder="" ng-model="user.address">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Birthday</span>
-        <input type="text" placeholder="" ng-model="user.birthday">
-      </label>
-    <button class="button button-calm button-block button-medium" ng-click="updateProfile2(user)">Save</button>
-    </form>
+        <!-- <label class="item item-input item-stacked-label">
+          <span class="input-label">Birthday: {{u.birthday}}</span>
+          <input type="date" ng-init="tao.birthday = u.birthday" ng-model="tao.birthday">
+        </label> -->
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">User Name: </span>
+          <input type="text" ng-init="tao.userName=u.username" ng-model="tao.userName">
+        </label>
+      <button type="button" ng-click="updateUser(u.user_id, tao)" class="button button-block button-positive"> <i class="icon ion-compose"></i> Update Account </button>
+    </section>
   </ion-content>
 </ion-view>

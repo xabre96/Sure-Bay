@@ -22,13 +22,13 @@ class Users_model extends CI_Model {
   }
 
   public function insert_users($data){
-    $this->load->library('encrypt');
+    // $this->load->library('encrypt');
     // $pass = 123;
-    $pass = $this->encrypt->encode(123);
+    // $pass = $this->encrypt->encode($data['passWord']);
 
     $data1=array(
       "username"=>$data['userName'],
-      "password"=>$pass,
+      "password"=>$data['passWord'],
       "user_type"=>$data['userType']
     );
 
@@ -72,7 +72,7 @@ class Users_model extends CI_Model {
       "lastName"=>$data['lastName'],
       "email"=>$data['email'],
       "address"=>$data['address'],
-      "birthday"=>$data['birthday']
+      // "birthday"=>$data['birthday']
     );
 		$confirm = $this->db->where('user_id',$id)->update('user_profile',$data2);
     if(!$confirm){

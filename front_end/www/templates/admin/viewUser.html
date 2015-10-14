@@ -25,8 +25,8 @@
           <input type="text" ng-init="tao.address=u.address" ng-model="tao.address">
         </label>
         <label class="item item-input item-stacked-label">
-          <span class="input-label">Birthday: {{u.birthday}}</span>
-          <input type="date" ng-init="tao.birthday=u.birthday" ng-model="tao.birthday">
+          <span class="input-label">Birthday: </span>
+          <input type="text" value="{{u.birthday}}" disabled="">
         </label>
         <label class="item item-input item-stacked-label">
           <span class="input-label">User Name: </span>
@@ -38,7 +38,7 @@
       <a href="" ng-click="deleteUser(u.user_id)" class="item item-icon-left">
         <i class="icon ion-trash-a"></i> Delete Account
       </a>
-      <section class="item item-toggle">
+      <!-- <section class="item item-toggle">
         Account {{xx.state}}
         <label class="toggle toggle-balanced">
           <input type="checkbox" ng-model="xx.state" ng-true-value="'Activated'" ng-false-value="'Deactivated'" ng-change="xx.activateAccount(xx.state)">
@@ -46,7 +46,7 @@
             <div class="handle"></div>
           </section>
         </label>
-      </section>
+      </section> -->
     </section>
   </ion-content>
 </ion-view>
