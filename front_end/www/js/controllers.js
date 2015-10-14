@@ -1,6 +1,6 @@
-angular.module('starter.controllers', ['starter.services'])
+angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, usersService, $state) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, $http) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,115 +10,187 @@ angular.module('starter.controllers', ['starter.services'])
   //});
 
   //users
+  $scope.users = [];
+  $http.get('http://localhost/surebay/back_end/users').then(function(resp) {
+    console.log('Success', resp);
+    $scope.users = resp.data;
+  }, function(err) {
+    console.error('ERR', err);
+  });
 
-  $scope.users = usersService.getUsers();
-
-  $scope.updateProfile = function(){
+  $scope.updateProfile = function() {
     $state.go("updateUser");
   };
 
-  $scope.updateProfile2 = function(){
-    
+  $scope.updateProfile2 = function() {
+
   };
 
-  $scope.logout= function(){
+  $scope.logout = function() {
     $state.go("login");
   };
 
-  $scope.logIn = function(user) {
-      var num = $scope.users.length;
-      for (var x = 0; x < num; x++) {
-        tempUser = $scope.users[x].username;
-        tempPass = $scope.users[x].password;
-        if (tempUser === user.userName && tempPass === user.passWord) {
-          if($scope.users[x].usertype=='Admin'){
-              $state.go("app.home");
-              user.userName = "";
-              user.passWord = "";
-          }
-          else{
-            $state.go("user");
-            user.userName = "";
-            user.passWord = "";
-          }
-          break;
-        }
-      }
-      if (tempUser !== user.userName && tempPass !== user.passWord) {
-        $scope.message = "Username and Password are incorrect.";
-      }
-
-      if(user.userName == "" && user.passWord == ""){
-        $scope.message="";
-      }
-      num = "";
+  $scope.userAdd = function(user) {
+    $http.post('http://localhost/surebay/back_end/users', user).then(function(resp) {
+      console.log('Success', resp);
+      reset(user);
+    }, function(err) {
+      console.error('ERR', err);
+    });
   };
 
-  $scope.userAdd = function(user){
-    usersService.insertUser(
-      user.firstName,
-      user.lastName,
-      user.userName,
-      user.passWord,
-      user.email,
-      user.address,
-      user.birthday,
-      user.userType
-    );
-    user.firstName="";
-    user.lastName="";
-    user.userName="";
-    user.passWord="";
-    user.email="";
-    user.address="";
-    user.userType="";
+  var reset = function(user) {
+    user.firstName = "";
+    user.lastName = "";
+    user.userName = "";
+    user.passWord = "";
+    user.email = "";
+    user.address = "";
+    user.userType = "";
+    user.birthday = "";
+    document.getElementsByTagName('checkbox').checked = false;
   };
-
-
-
-
-  // Form data for the login modal
-  // $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  // $ionicModal.fromTemplateUrl('templates/login.html', {
-  //   scope: $scope
-  // }).then(function(modal) {
-  //   $scope.modal = modal;
-  // });
-
-  // Triggered in the login modal to close it
-  // $scope.closeLogin = function() {
-  //   $scope.modal.hide();
-  // };
-  //
-  // // Open the login modal
-  // $scope.login = function() {
-  //   $scope.modal.show();
-  // };
-  //
-  // // Perform the login action when the user submits the login form
-  // $scope.doLogin = function() {
-  //   console.log('Doing login', $scope.loginData);
-  //
-  //   // Simulate a login delay. Remove this and replace with your login
-  //   // code if using a login system
-  //   $timeout(function() {
-  //     $scope.closeLogin();
-  //   }, 1000);
-  // };
 })
+.controller('loginController', function($scope, $ionicModal, $timeout, $location, $http, $stateParams, $ionicPopup, $state) {
+  $scope.logIn = function(user) {
+    // var user2 = user;
+    var passWord = CryptoJS.SHA512(user.passWord);
+    user.passWord = "" + passWord;
+    // user.passWord = user.passWord;
+    $http.post('http://localhost/surebay/back_end/login', user).then(function(resp) {
+      console.log(resp);
+      if(resp.data[0].user_type==1){
+             $state.go("app.home");
+             user.userName = "";
+             user.passWord = "";
+         }
+         else{
+           $state.go("user");
+           user.userName = "";
+           user.passWord = "";
+         }
+    }, function(err) {
+      console.error('ERR', err);
+        $scope.message = "Username and Password are incorrect.";
+    });
+  };
+})
+.controller('userController', function($scope, $ionicModal, $timeout, $location, $http, $stateParams, $ionicPopup) {
+  $scope.user = [];
+  var xx = this;
+  $http.get('http://localhost/surebay/back_end/users/' + $stateParams.user_id).then(function(resp) {
+    console.log('Success', resp);
+    $scope.user = resp.data;
+  }, function(err) {
+    console.error('ERR', err);
+  });
 
-// .controller('PlaylistsCtrl', function($scope) {
-//   $scope.playlists = [
-//     { title: 'Reggae', id: 1 },
-//     { title: 'Chill', id: 2 },
-//     { title: 'Dubstep', id: 3 },
-//     { title: 'Indie', id: 4 },
-//     { title: 'Rap', id: 5 },
-//     { title: 'Cowbell', id: 6 }
-//   ];
-// })
-//
-// .controller('PlaylistCtrl', function($scope, $stateParams) {
-// });
+  $scope.formatDate=function(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return date = [year, month, day].join('-');
+}
+
+  $scope.updateUser = function(id, user){
+    user.birthday=$scope.formatDate(user.birthday);
+    $http.put('http://localhost/surebay/back_end/users/' + $stateParams.user_id, user).then(function(resp) {
+      console.log('Success', resp);
+      var alertPopup = $ionicPopup.alert({
+        title: 'Success',
+        template: 'User successfully updated!'
+      });
+      alertPopup.then(function(res) {
+      });
+
+    }, function(err) {
+      console.error('ERR', err);
+      var alertPopup = $ionicPopup.alert({
+        title: 'Oops something happened...',
+        template: 'Error. User deletion failed.'
+      });
+      alertPopup.then(function(res) {});
+    });
+  };
+
+  $scope.deleteUser = function(id) {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'User Deletion',
+        template: 'Are you sure you want to delete this account?'
+      });
+      confirmPopup.then(function(res) {
+        if (res) {
+          $http.delete('http://localhost/surebay/back_end/users/'+id).then(function(resp) {
+            console.log('Success', resp);
+            var alertPopup = $ionicPopup.alert({
+              title: 'Success',
+              template: 'User successfully deleted!'
+            });
+            alertPopup.then(function(res) {});
+            $location.path("/app/users");
+            window.location.reload();
+          }, function(err) {
+            console.error('ERR', err);
+            var alertPopup = $ionicPopup.alert({
+              title: 'Oops something happened...',
+              template: 'Error. User deletion failed.'
+            });
+            alertPopup.then(function(res) {});
+          });
+        } else {
+          // On Cancel Update Value
+
+        }
+      });
+  };
+  xx.state = "Deactivated"
+  xx.activateAccount = function(sta) {
+    stat = [{type:1}];
+    $http.put('http://localhost/surebay/back_end/users/' + $stateParams.user_id, stat).then(function(resp) {
+      console.log('Success', resp);
+    }, function(err) {
+      console.error('ERR', err);
+        xx.state = "Deactivated";
+        return xx.state;
+
+    });
+    // if (sta == 'Activated') {
+    //   var confirmPopup = $ionicPopup.confirm({
+    //     title: 'User Activation',
+    //     template: 'Are you sure you want to activate this account?'
+    //   });
+    //   confirmPopup.then(function(res) {
+    //     if (res) {
+        //   stat = [{type:1}];
+        //   $http.put('http://localhost/surebay/back_end/users/' + $stateParams.user_id, stat).then(function(resp) {
+        //     console.log('Success', resp);
+        //     // $scope.user.user_type = 1;
+        //     var alertPopup = $ionicPopup.alert({
+        //       title: 'Success',
+        //       template: 'User successfully activated!'
+        //     });
+        //     alertPopup.then(function(res) {});
+        //   }, function(err) {
+        //     console.error('ERR', err);
+        //     // var alertPopup = $ionicPopup.alert({
+        //     //   title: 'Oops something happened...',
+        //     //   template: 'Error. User activation failed.'
+        //     // });
+        //     // alertPopup.then(function(res) {
+        //       xx.state = "Deactivated";
+        //       return xx.state;
+        //     // });
+        //   });
+        // } else {
+        //   // On Cancel Update Value
+        //   xx.state = "Deactivated";
+        //   return xx.state;
+        // }
+    //   });
+    // }
+  };
+
+});

@@ -6,29 +6,12 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content class="padding">
-    <div class="list card" ng-repeat="u in users track by $index">
-      <a href="#/viewUser" class="item item-avatar item-button-right">
+    <section class="list card" ng-repeat="u in users track by $index">
+      <a href="#/users/{{u.user_id}}/viewUser" class="item item-avatar item-button-right">
+        <!-- <button type="button" class="item item-avatar item-button-right" ng-click="viewUser({{u.user_id}})"> -->
         <img src="../img/default.jpg" alt="Profile Picture" />
-        <h2>{{u.firstname}} {{u.lastname}}</h2>
-        <p>
-          {{u.usertype}}
-        </p>
-        <!-- <button class="button button-positive">
-          <i class="icon ion-trash-a"></i>
-        </button> -->
+        <h2>{{u.username}}</h2>
       </a>
-
-      <!-- <div class="item tabs tabs-secondary tabs-icon-right">
-         <div class="button-bar">
-        <button class="button button-light b1" ng-click="updateUser($index)">
-          <i class="icon ion-edit"></i>
-        </button>
-        <button class="button button-light b1" ng-click="deleteUser($index)">
-          <i class="icon ion-trash-a"></i>
-        </button>
-        </div>
-      </div> -->
-    </div>
-
+    </section>
   </ion-content>
 </ion-view>

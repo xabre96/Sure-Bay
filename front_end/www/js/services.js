@@ -1,49 +1,8 @@
 angular.module('starter.services', ['ngResource'])
   .service('usersService', function($resource) {
 
-    //var factory = {};
-    var users = [{
-      id: '1',
-      firstname: 'Croiche Jom',
-      lastname: 'Cabotaje',
-      username: 'cjim',
-      password: '123',
-      email: 'cjim@gmail.com',
-      address: 'El Salvador City',
-      birthday:'December 10, 1995',
-      usertype: 'Admin'
-    },{
-      id: '2',
-      firstname: 'Sheen',
-      lastname: 'Gulay',
-      username: 'psheen',
-      password: '123',
-      email: 'sharp@gmail.com',
-      address: 'CDO City',
-      birthday:'November 4, 1995',
-      usertype: 'Admin'
-    },{
-      id: '3',
-      firstname: 'Xan',
-      lastname: 'Gutierrez',
-      username: 'xan',
-      password: '123',
-      email: 'xan@gmail.com',
-      address: 'Camiguin',
-      birthday:'September 8, 1996',
-      usertype: 'User'
-    },
-     {
-       id: '4',
-      firstname: 'Nova',
-      lastname: 'Kho',
-      username: 'nova',
-      password: '123',
-      email: 'nova@gmail.com',
-      address: 'CDO City',
-      birthday:'October 10, 1995',
-      usertype: 'Admin'
-    }];
+    var users = [];
+
 
     //  return {
     this.getUsers = function() {
@@ -83,5 +42,16 @@ angular.module('starter.services', ['ngResource'])
     // this.deleteUser = function(key) {
     //     user.splice(key, 1);
     // };
+
+
+    //     // Simple POST request example (passing data) :
+    // $http.post('/someUrl', {msg:'hello word!'}).
+    //   then(function(response) {
+    //     // this callback will be called asynchronously
+    //     // when the response is available
+    //   }, function(response) {
+    //     // called asynchronously if an error occurs
+    //     // or server returns response with an error status.
+    //   });
 
   });

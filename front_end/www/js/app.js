@@ -42,9 +42,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   })
 
   .state('viewUser', {
-    url: '/viewUser',
+    url: '/users/:user_id/viewUser',
     templateUrl: 'templates/admin/viewUser.html',
-    controller: 'AppCtrl'
+    controller: 'userController as xx'
   })
 
   .state('app.surveys', {
@@ -78,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
-    controller: 'AppCtrl'
+    controller: 'loginController'
   })
 
   .state('register', {
@@ -96,7 +96,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/user/user.html'
   })
   .state('updateUser', {
-    url: '/updateUser',
+    url: '/updateUser/:user_id',
     templateUrl: 'templates/admin/updateUser.html'
   })
   // if none of the above states are matched, use this as the fallback

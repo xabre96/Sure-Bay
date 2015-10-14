@@ -7,24 +7,46 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content>
-    <div class="list">
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-compose"></i>
-        Update Account
-      </a>
-      <a href="#" class="item item-icon-left">
-        <i class="icon ion-trash-a"></i>
-         Delete Account
-      </a>
-      <div class="item item-toggle">
-        Activate Account
-        <label class="toggle toggle-balanced">
-          <input type="checkbox">
-          <div class="track">
-            <div class="handle"></div>
-          </div>
+    <section class="list" ng-repeat="u in user">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">First Name: </span>
+          <input type="text"  ng-init="tao.firstName=u.firstname" ng-model="tao.firstName">
         </label>
-      </div>
-    </div>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Last Name: </span>
+          <input type="text" ng-init="tao.lastName = u.lastname" ng-model="tao.lastName">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email: </span>
+          <input type="email" ng-init="tao.email=u.email" ng-model="tao.email">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Address: </span>
+          <input type="text" ng-init="tao.address=u.address" ng-model="tao.address">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Birthday: {{u.birthday}}</span>
+          <input type="date" ng-init="tao.birthday=u.birthday" ng-model="tao.birthday">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">User Name: </span>
+          <input type="text" ng-init="tao.userName=u.username" ng-model="tao.userName">
+        </label>
+      <a href  ng-click="updateUser(u.user_id, tao)" class="item item-icon-left">
+        <i class="icon ion-compose"></i> Update Account
+      </a>
+      <a href="" ng-click="deleteUser(u.user_id)" class="item item-icon-left">
+        <i class="icon ion-trash-a"></i> Delete Account
+      </a>
+      <section class="item item-toggle">
+        Account {{xx.state}}
+        <label class="toggle toggle-balanced">
+          <input type="checkbox" ng-model="xx.state" ng-true-value="'Activated'" ng-false-value="'Deactivated'" ng-change="xx.activateAccount(xx.state)">
+          <section class="track">
+            <div class="handle"></div>
+          </section>
+        </label>
+      </section>
+    </section>
   </ion-content>
 </ion-view>
