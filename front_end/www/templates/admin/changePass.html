@@ -8,10 +8,22 @@
   </ion-nav-bar>
   <ion-content>
     <section class="list">
-        <label class="item item-input item-stacked-label">
-          <span class="input-label">First Name: </span>
-          <input type="text"  ng-init="tao.firstName=u.firstname" ng-model="tao.firstName">
-        </label>
+      <label class="item item-input">
+        <span  class="input-label">Old Password</span>
+        <input type="password" ng-model="pass.old" required="">
+      </label>
+      <label class="item item-input">
+        <span  class="input-label">New Password</span>
+        <input type="password" ng-model="pass.new" required="">
+      </label>
+      <label class="item item-input">
+        <span  class="input-label">Confirm New Password</span>
+        <input type="password" ng-model="pass.new2" required="">
+      </label>
+      <button type="button" class="button button-block button-positive" ng-click="changePass(id, pass)">Change Password</button>
+      <p style="color: red;">
+        {{message}}
+      </p>
     </section>
   </ion-content>
 </ion-view>

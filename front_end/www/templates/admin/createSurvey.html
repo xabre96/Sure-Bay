@@ -1,0 +1,33 @@
+<ion-view title="Create User">
+  <ion-nav-bar class="bar-balanced">
+    <ion-nav-buttons side="left">
+      <a class="button button-clear ion-arrow-left-c" href="#/app/survey">
+          Back
+        </a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content padding="true" scroll="true" class="has-header">
+    <form>
+      1. Open Ended Question
+      <input type="text" value="" placeholder="Enter Question here:"/>
+      <br>
+      2. Close Ended Question Y/N | | T/F
+      <input type="text" placeholder="Enter Question here" value="">
+      <input type="text" placeholder="Enter First Option" value="">
+      <input type="text" placeholder="Enter Second Option" value="">
+      <br>
+      3. Multiple Options(4)
+      <input type="text" placeholder="Enter Question here" value="">
+      <input type="text" placeholder="Enter First Option" value="">
+      <input type="text" placeholder="Enter Second Option" value="">
+      <input type="text" placeholder="Enter Third Option" value="">
+      <input type="text" placeholder="Enter Fourth Option" value="">
+      <br>
+      4. Essay type Question
+      <input type="text" value="" placeholder="Enter Question here:"/>
+    </form>
+    <p style="color: red;">
+      {{message}}
+    </p>
+  </ion-content>
+</ion-view>

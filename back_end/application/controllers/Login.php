@@ -12,6 +12,20 @@ class Login extends REST_Controller {
 			$this->load->model('Users_model','users');
 	}
 
+	public function index_put(){
+		$id = (int) $this->get('id');
+		$data = $this->put();
+		if(!$data){
+			$this->response(array("message" => "Failed"), 400);
+		}else{
+				$confirm = $this->users->changePass($data, $id);
+			if($confirm === false){
+					$this->response(array("message" => "Failed"), 400);
+			}else{
+					$this->response(array("message" => "Password Changed"), 200);
+			}
+		}
+	}
 	public function index_post()
 	{
 		$data = $this->post();

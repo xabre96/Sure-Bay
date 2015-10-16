@@ -8,7 +8,6 @@
   <ion-content class="padding">
     <section class="list card" ng-repeat="u in users track by $index" ng-if="u.user_id!=id">
       <a href="#/users/{{u.user_id}}/viewUser" class="item item-avatar item-button-right">
-        <!-- <button type="button" class="item item-avatar item-button-right" ng-click="viewUser({{u.user_id}})"> -->
         <img src="../img/default.jpg" alt="Profile Picture" />
         <h2>{{u.username}}</h2>
       </a>

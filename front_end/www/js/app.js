@@ -88,12 +88,10 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/login.html',
     controller: 'loginController'
   })
-
   .state('register', {
     url: '/register',
     templateUrl: 'templates/register.html'
   })
-
   .state('register2', {
     url: '/register2',
     templateUrl: 'templates/admin/register.html',
@@ -108,6 +106,30 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     templateUrl: 'templates/admin/updateUser.html',
     controller: 'userController as xx'
   })
+  .state('home', {
+      url: '/home',
+      templateUrl: 'templates/user/home.html',
+      // controller: 'homeCtrl'
+    })
+    .state('createSurvey', {
+      url: '/createSurvey',
+      //page7
+      templateUrl: 'templates/admin/createSurvey.html',
+      // controller: 'createSurveyCtrl'
+    })
+    .state('settings', {
+      url: '/settings',
+      //page8
+      templateUrl: 'templates/user/settings.html',
+      controller: 'AppCtrl'
+      // controller: 'settindgsCtrl'
+    })
+    .state('profile', {
+      url: '/profile',
+      //page9
+      templateUrl: 'templates/user/profile.html',
+      // controller: 'profileCtrl'
+    })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 });

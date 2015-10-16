@@ -82,6 +82,12 @@ class Users_model extends CI_Model {
     }
 	}
 
+  public function changePass($data, $id){
+    $data1 = array("password"=>$data['new2']);
+		$confirm = $this->db->where('user_id',$id)->update('user_account',$data1);
+    return $confirm;
+	}
+
   public function delete_user($id){
     $this->db->where('user_id',$id)->delete('user_profile');
 		$confirm = $this->db->where('user_id',$id)->delete('user_account');

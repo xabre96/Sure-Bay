@@ -9,14 +9,7 @@ angular.module('starter.controllers', [])
     //$scope.$on('$ionicView.enter', function(e) {
     //});
 
-    //users
     $scope.users = [];
-    // $http.get('http://localhost/surebay/back_end/users').then(function(resp) {
-    //   console.log('Success', resp);
-    //   $scope.users = resp.data;
-    // }, function(err) {
-    //   console.error('ERR', err);
-    // });
     if (localStorage.getItem("credential_userid") === null || localStorage.getItem("credential_password") === null) {
       $state.go("login");
       // location.reload();
@@ -25,12 +18,6 @@ angular.module('starter.controllers', [])
       $scope.id = localStorage.getItem("credential_userid");
       $http.get('http://localhost/surebay/back_end/users').then(function(resp) {
         console.log('Success', resp);
-        // for(var x=0; x<resp.data.length; x++){
-        //   if(resp.data[x].user_id===localStorage.getItem("credential_userid")){
-        //     delete resp.data[x];
-        //    console.log(resp.data[x]);
-        //   }
-        // }
         $scope.users = resp.data;
       }, function(err) {
         console.error('ERR', err);
@@ -46,11 +33,14 @@ angular.module('starter.controllers', [])
         location.reload();
       };
 
+      $scope.surveyAdd = function(survey) {
+        console.log(survey);
+      };
+
       $scope.userAdd = function(user) {
         if (user.firstName == null || user.lastName == null || user.userName == null || user.email == null || user.address == null || user.birthday == null || user.userType==null) {
           $scope.message="Please fill all required fields.";
         } else {
-          console.log("musold na");
           var pass = ""+123;
           var passWord = CryptoJS.SHA512(pass);
           user.passWord = ""+passWord;
@@ -80,17 +70,16 @@ angular.module('starter.controllers', [])
         user.address = "";
         user.userType = "";
         user.birthday = "";
-        // document.getElementsByTagName('checkbox').checked = false;
       };
     }
   })
+
   .controller('loginController', function($scope, $ionicModal, $timeout, $location, $http, $stateParams, $ionicPopup, $state) {
 
     if (localStorage.getItem("credential_userid") != null || localStorage.getItem("credential_password") != null) {
       $state.go("app.home");
-      // location.reload();
+      location.reload();
     } else {
-
     $scope.logIn = function(user) {
       // var user2 = user;
       var passWord = CryptoJS.SHA512(user.passWord);
@@ -103,7 +92,7 @@ angular.module('starter.controllers', [])
           user.userName = "";
           user.passWord = "";
         } else {
-          $state.go("user");
+          $state.go("home");
           user.userName = "";
           user.passWord = "";
         }
@@ -130,7 +119,7 @@ angular.module('starter.controllers', [])
     }, function(err) {
       console.error('ERR', err);
     });
-
+    $scope.id = $stateParams.user_id;
     $scope.formatDate = function(date) {
       var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -141,10 +130,63 @@ angular.module('starter.controllers', [])
       return date = [year, month, day].join('-');
     }
 
+    $scope.changePass = function(id, pass){
+      if(pass.old==null||pass.new==null||pass.new2==null){
+        $scope.message = "Please fill up all required fields";
+        pass.old = "";
+        pass.new = "";
+        pass.new2="";
+      }else{
+      var passWord = CryptoJS.SHA512(pass.old);
+      pass.old = "" + passWord;
+      if(pass.old!=localStorage.getItem("credential_password")){
+        $scope.message = "The password does not match the Old Password";
+        pass.old = "";
+        pass.new = "";
+        pass.new2="";
+      }
+      else{
+        if(pass.new!=pass.new2){
+          $scope.message = "Password does not match.";
+          pass.old = "";
+          pass.new = "";
+          pass.new2="";
+        }else{
+          passWord = CryptoJS.SHA512(pass.new2);
+          pass.new2 = "" + passWord;
+          $http.put('http://localhost/surebay/back_end/login/' + $stateParams.user_id, pass).then(function(resp) {
+            console.log('Success', resp);
+            pass.old = "";
+            pass.new = "";
+            pass.new2="";
+            var alertPopup = $ionicPopup.alert({
+              title: 'Success',
+              template: 'Password changed!'
+            });
+            alertPopup.then(function(res) {
+            });
+          }, function(error) {
+            console.log(error);
+            var alertPopup = $ionicPopup.alert({
+              title: 'Oops something happened...',
+              template: 'Error. Password Changing failed.'
+            });
+            alertPopup.then(function(res) {});
+            pass.old = "";
+            pass.new = "";
+            pass.new2="";
+          }
+        );
+        }
+      }
+      }
+    };
+
     $scope.updateUser = function(id, user) {
       user.birthday = $scope.formatDate(user.birthday);
       $http.put('http://localhost/surebay/back_end/users/' + $stateParams.user_id, user).then(function(resp) {
         console.log('Success', resp);
+        localStorage.credential_username =  user.userName;
         var alertPopup = $ionicPopup.alert({
           title: 'Success',
           template: 'User successfully updated!'
@@ -202,8 +244,8 @@ angular.module('starter.controllers', [])
       }, function(err) {
         console.error('ERR', err);
         xx.state = "Deactivated";
-        return xx.state;
       });
+    //     return xx.state;
       // if (sta == 'Activated') {
       //   var confirmPopup = $ionicPopup.confirm({
       //     title: 'User Activation',
